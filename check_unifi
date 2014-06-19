@@ -1,0 +1,15 @@
+#!/bin/bash
+SERVICE='unifi'
+#echo 'checking' $SERVICE
+CHECKNUM=$(ps aux | grep -v grep | egrep -c $SERVICE)
+#echo 'count on' $SERVICE 'is:' $CHECKNUM
+sleep 5
+if [ $CHECKNUM -lt '3' ]
+then
+        echo $SERVICE "IS DOWN - CRITICAL ERROR"
+        exit 2
+
+else
+        echo $SERVICE "IS UP - ALL GOOD HERE"
+        exit 0
+fi
